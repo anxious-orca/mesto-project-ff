@@ -1,8 +1,13 @@
+// функция поиска шаблона карточки
+const getTemplate = () => {
+    return document
+      .querySelector("#card-template")
+      .content.querySelector(".card")
+      .cloneNode(true);
+  };
 // функция создания карточки
-const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
-
-function createCard(cardData, deleteCard, likeCard) {
-    const cardElement = cardTemplate.cloneNode(true);
+const createCard = ({cardData, deleteCardFunction, likeCardFunction, openCardFunction}) => {
+    const cardElement = getTemplate();
     const cardHeading = cardElement.querySelector('.card__title');
     const cardImage = cardElement.querySelector('.card__image');
     const deleteButton = cardElement.querySelector('.card__delete-button');
@@ -12,19 +17,21 @@ function createCard(cardData, deleteCard, likeCard) {
     cardImage.src = cardData.link;
     cardImage.alt = `Изображение места: ${cardData.name}`;
 
-    deleteButton.addEventListener('click', () => deleteCard(cardElement));
-    likeButton.addEventListener('click', () => likeCard(likeButton));
+    deleteButton.addEventListener('click', () => deleteCardFunction(cardElement));
+    likeButton.addEventListener('click', () => likeCardFunction(likeButton));
+    cardImage.addEventListener('click', () => openCardFunction(cardImage.src, cardHeading.textContent));
+
     
     return cardElement;
 }
 
 // функция удаления
-function deleteElement(element) {
+const deleteElement = element => {
     element.remove();
 }
 
 // функция лайка
-function likeElement(element) {
+const likeElement = element => {
     element.classList.toggle('card__like-button_is-active');
 }
 
