@@ -1,7 +1,7 @@
 .popup__content {
   max-width: 430px;
   width: 100%;
-  min-height: 330px;
+  min-height: 180px;
   background-color: #fff;
   border-radius: 10px;
   position: relative;
@@ -9,10 +9,17 @@
   padding: 34px 36px;
 }
 
+.popup_type_delete .popup__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 568px) {
   .popup__content {
     width: 100%;
     max-width: calc(100% - 80px);
+    min-height: 160px;
     margin-top: 40px;
     padding: 30px 20px;
   }

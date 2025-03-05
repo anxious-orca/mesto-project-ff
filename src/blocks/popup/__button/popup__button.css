@@ -19,9 +19,33 @@
   cursor: pointer;
 }
 
+.popup__button_disabled {
+  color: #C4C4C4;
+  background: #FFFFFF;
+  pointer-events: none;
+  border: 1px solid #C4C4C4;
+}
+
+.popup__button-delete {
+  margin-top: 0;
+}
+
 @media screen and (max-width: 568px) {
   .popup__button {
     font-size: 14px;
     line-height: 17px;
   }
+}
+
+.popup__button_text {
+  display: flex;
+}
+.popup__button_text-animated {
+  opacity: 1;
+  animation: loading 500ms infinite;
+}
+
+@keyframes loading {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }

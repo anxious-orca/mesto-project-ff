@@ -1,0 +1,29 @@
+.avatar__edit-button {
+    width: 26px;
+    height: 26px;
+    background: transparent url('../../../images/editavatar.svg') center no-repeat;
+    border: none;
+    align-self: center;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 47px;
+    inset-inline-start: 47px;
+    opacity: 1;
+    pointer-events: none;
+    transition: visibility 0s .3s, opacity .3s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    visibility: hidden;
+    transition: visibility .3s linear;
+    transition: opacity .3s linear;
+}
+
+.avatar__edit-button:hover {
+  opacity: 0.6;
+}
+
+  

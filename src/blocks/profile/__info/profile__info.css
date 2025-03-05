@@ -2,20 +2,20 @@
   display: grid;
   grid-template-areas: "title button"
   "description description";
-  grid-template-columns: minmax(auto, 335px) auto;
+  grid-template-columns: fit-content(295px) auto;
   grid-gap: 9px 17px;
 }
 
 @media screen and (max-width: 740px) {
   .profile__info {
-    grid-template-columns: minmax(auto, 288px) auto;
+    grid-template-columns: fit-content(228px) auto;
     grid-gap: 9px 5px;
   }
 }
 
 @media screen and (max-width: 568px) {
   .profile__info {
-    grid-template-columns: minmax(auto, 235px) auto;
+    grid-template-columns: fit-content(195px) auto;
   }
 }
 
