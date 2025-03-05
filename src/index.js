@@ -101,7 +101,7 @@ const handleOpenFormEditAvatar = (popup, form) => {
 };
 // обработчик изменения аватарки
 // (отправляем PATCH запрос с данными из input, добавляем ответ в профиль на странице и закрываем попап)
-const handleSubmitFormEditAvatar = (evt, {popup, avatarContainer, avatarLink, buttonText}) => {
+const handleSubmitFormEditAvatar = (evt, {form, popup, avatarContainer, avatarLink, buttonText}) => {
     evt.preventDefault();
     renderLoading(buttonText, true);
     updateAvatar(avatarLink.value)
@@ -115,6 +115,7 @@ const handleSubmitFormEditAvatar = (evt, {popup, avatarContainer, avatarLink, bu
     })
     .finally(() => {
         renderLoading(buttonText, false);
+        form.reset();
     });
 };
 // обработчик открытия попапа добавления кастомной карточки
@@ -210,6 +211,7 @@ formEditProfile.addEventListener('submit', evt => handleSubmitFormEditProfile(ev
 buttonEditAvatar.addEventListener('click', () => handleOpenFormEditAvatar(popupEditAvatar, formAvatarEdit));
 // добавляем слушатель на submit, измененяя аватарку
 formAvatarEdit.addEventListener('submit', evt => handleSubmitFormEditAvatar(evt, {
+    form: formAvatarEdit,
     popup: popupEditAvatar, 
     avatarContainer: profileAvatarImage,
     avatarLink: inputAvatarLink,
