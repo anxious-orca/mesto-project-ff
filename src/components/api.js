@@ -8,18 +8,17 @@ const config = {
     }
 };
 
+// функция проверки ответа
+const checkResponse = res => {
+    return res.ok ? res.json() : Promise.reject(res.status);
+};
+
 // функция поиска карточек на сервере
 const searchCards = () => {
     return fetch(`${config.baseUrl}${config.cohortId}/cards`, {
         headers: config.headers
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // функция отправки своей карточки на сервер
@@ -32,13 +31,7 @@ const sendCard = (cardName, cardLink) => {
             link: cardLink
         })
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // функция удаления своей карточки с сервера
@@ -58,13 +51,7 @@ const likeCard = cardId => {
         method: 'PUT',
         headers: config.headers
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // функция удаления лайка с карточки на сервере
@@ -73,13 +60,7 @@ const unlikeCard = cardId => {
         method: 'DELETE',
         headers: config.headers
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // функция поиска информации о себе на сервере
@@ -87,13 +68,7 @@ const searchUser = () => {
     return fetch(`${config.baseUrl}${config.cohortId}/users/me`, {
         headers: config.headers
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // функция изменяющая информацию о себе на сервере
@@ -107,13 +82,7 @@ const updateUser = (newName, newAbout) => {
           avatar: "https://i.imgur.com/JSFINoW.jpeg"
         })
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // функция изменяющая аватарку на сервере
@@ -125,13 +94,7 @@ const updateAvatar = newAvatar => {
           avatar: newAvatar
         })
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(res.status);
-        }
-    });
+    .then(res => checkResponse(res));
 };
 
 // экспорт функций в index.js

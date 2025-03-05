@@ -31,16 +31,5 @@ const handleEscClose = evt => {
     }
 };
 
-// функция loader на кнопку submit
-function renderLoading(loader, isLoading)  {
-    if(isLoading) {
-        loader.textContent = 'Сохранение...';
-        loader.classList.add('popup__button_text-animated');
-    } else {
-        loader.textContent = 'Сохранить';
-        loader.classList.remove('popup__button_text-animated');
-    }
-  }
-
 // экспорт функций в index.js
-export { openPopup, closePopup, setModalWindowEventListeners, renderLoading };
+export { openPopup, closePopup, setModalWindowEventListeners };
