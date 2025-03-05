@@ -100,7 +100,7 @@ const handleOpenFormEditAvatar = (popup, form) => {
     openPopup(popup);
 };
 // обработчик изменения аватарки
-// (отправляем PATCH запрос с данными из input, добавляем ответ в профиль на странице и закрываем попап)
+// (отправляем PATCH запрос с данными из input, добавляем ответ в профиль на странице и закрываем попап, очищаем форму)
 const handleSubmitFormEditAvatar = (evt, {form, popup, avatarContainer, avatarLink, buttonText}) => {
     evt.preventDefault();
     renderLoading(buttonText, true);
@@ -151,13 +151,13 @@ const handleSubmitFormNewCard = (evt, {form, popup, cardName, cardLink, cardList
     });
 };
 // обработчик открытия попапа удаления карточки
-// (добавляем элемент карточки и ее id для удаления и открываем попап)
+// (добавляем в попап id карточки для ее удаления и открываем попап)
 const handleOpenPopupDelete = elementId => {
     popupDeleteCardId.textContent = elementId;
     openPopup(popupDelete);
 };
 // обработчик кнопки удаления карточки
-// (вешаем слушатель и передаем элемент карточки и ее id)
+// (находим и передаем в функцию удаления: попап, элемент карточки и ее id)
 const handleSubmitPopupDelete = () => {
     const cardId = popupDeleteCardId.textContent;
     const cardElement = container.querySelector(`#id${cardId}`);
@@ -228,6 +228,7 @@ formNewCard.addEventListener('submit', evt => handleSubmitFormNewCard(evt, {
     cardList: cardsContainer,
     buttonText: buttonTextFormNewCard
 }));
+// добавляем слушатель на кнопку попапа подтверждающего удаление карточки
 buttonConfirmDelete.addEventListener('click', handleSubmitPopupDelete);
 // добавляем карточки с сервера на страницу
 Promise.all([searchCards(), searchUser()])
